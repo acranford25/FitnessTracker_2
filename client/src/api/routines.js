@@ -58,18 +58,14 @@ export async function patchRoutine(routine_id, name, goal, is_public) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        routine: {
-          name,
-          goal,
-          is_public,
-        },
+        name,
+        goal,
+        is_public,
       }),
     });
     const result = await response.json();
     console.log("result form patch routine: ", result);
-    if (token) {
-      return result;
-    }
+    return result;
   } catch (error) {
     console.error(error);
   }

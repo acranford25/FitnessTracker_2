@@ -256,7 +256,7 @@ async function getPublicRoutinesByActivity(activityId) {
   }
 }
 
-async function updateRoutine(routineId, name, goal, isPublic) {
+async function updateRoutine(routineId, name, goal, is_public) {
   try {
     const {
       rows: [routine],
@@ -268,7 +268,7 @@ async function updateRoutine(routineId, name, goal, isPublic) {
                   WHERE id = $1
                   RETURNING *;
               `,
-      [routineId, name, goal, isPublic]
+      [routineId, name, goal, is_public]
     );
     return routine;
   } catch (error) {

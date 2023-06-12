@@ -6,7 +6,7 @@ import DropDown from "../Activities/DropDown";
 import useAuth from "../../hooks/useAuth";
 import AddActivties from "./AddActivities";
 
-export default function SelectedRoutine() {
+export default function SelectedRoutine({ handleSubmit }) {
   const { routineId } = useParams();
   const [routine, setRoutine] = useState({});
   const [activities, setActivities] = useState([]);
@@ -22,7 +22,7 @@ export default function SelectedRoutine() {
       setActivities(result.routine.activities);
     }
     getGetRoutinesById();
-  }, []);
+  }, [handleSubmit]);
 
   useEffect(() => {
     async function getGetActivities() {
@@ -31,7 +31,7 @@ export default function SelectedRoutine() {
       setMyActivities(result.activities);
     }
     getGetActivities();
-  }, []);
+  }, [handleSubmit]);
 
   return (
     <div>
@@ -71,7 +71,9 @@ export default function SelectedRoutine() {
           </div>
         )}
       </div>
-      {routine.creator_id === user.id && <AddActivties routine={routine} />}
+      {routine.creator_id === user.id && (
+        <AddActivties routine={routine} handleSubmit={handleSubmit} />
+      )}
     </div>
   );
 }

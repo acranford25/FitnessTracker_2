@@ -89,7 +89,7 @@ routinesRouter.patch("/:routine_id", authRequired, async (req, res, next) => {
     updateFields.activities = activities.trim().split(/\s+/);
   }
 
-  if (title) {
+  if (name) {
     updateFields.name = name;
   }
 
@@ -97,7 +97,7 @@ routinesRouter.patch("/:routine_id", authRequired, async (req, res, next) => {
     updateFields.goal = goal;
   }
 
-  if (is_public) {
+  if (!null) {
     updateFields.is_public = is_public;
   }
 
